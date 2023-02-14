@@ -19,9 +19,9 @@ export default abstract class AbstractODM<T> {
     return this._model.find();
   }
   
-  async findById(_id:string):Promise<T | null | undefined> {
-    if (!isValidObjectId(_id)) return undefined;
-    return this._model.findOne({ _id });
+  async findById(id:string):Promise<T | null | undefined> {
+    if (!isValidObjectId(id)) return undefined;
+    return this._model.findOne({ id });
   }
 
   public async update(_id: string, data: T): Promise<T | null | undefined > {
