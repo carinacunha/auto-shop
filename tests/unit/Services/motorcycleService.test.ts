@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import IMotor from '../../../src/Interfaces/IMotorcycles';
+import IMotor from '../../../src/Interfaces/IMotorcycle';
 import MotorService from '../../../src/Services/MotorcycleService';
 
 const MODELNAME = 'Honda Cb 600f Hornet';

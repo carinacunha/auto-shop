@@ -1,7 +1,6 @@
 import { RequestHandler } from 'express';
 import { isValidObjectId } from 'mongoose';
 import CarService from '../Services/CarService';
-import ICar from '../Interfaces/ICar';
 
 export default class CarController {
   constructor(private _serviceCar = new CarService()) {}
@@ -25,13 +24,13 @@ export default class CarController {
 
   public updateById: RequestHandler = async (req, res) => {
     const { id } = req.params;
-    const data: Partial<ICar> = req.body;
+    const { body } = req;
 
     if (!isValidObjectId(id)) {
       return res.status(422).json({ message: 'Invalid mongo id' });
     }
 
-    const carUpdated = await this._serviceCar.updateById(id, data);
+    const carUpdated = await this._serviceCar.updateById(id, body);
     if (carUpdated) {
       return res.status(200).json(carUpdated);
     } return res.status(404).json({ message: 'Car not found' });

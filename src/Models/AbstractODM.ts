@@ -1,4 +1,4 @@
-import { Model, models, Schema, model, isValidObjectId } from 'mongoose';
+import { Model, models, Schema, model, isValidObjectId, UpdateQuery } from 'mongoose';
 
 export default abstract class AbstractODM<T> {
   protected _model: Model<T>;
@@ -22,5 +22,9 @@ export default abstract class AbstractODM<T> {
   async findById(_id:string):Promise<T | null | undefined> {
     if (!isValidObjectId(_id)) return undefined;
     return this._model.findOne({ _id });
+  }
+
+  public async update(_id: string, data: T): Promise<T | null | undefined > {
+    return this._model.findByIdAndUpdate({ _id }, { ...data } as UpdateQuery<T>, { new: true });
   }
 } 

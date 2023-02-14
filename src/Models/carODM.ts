@@ -1,43 +1,18 @@
-import {
-  Model,
-  Schema,
-  model,
-  models,
-  isValidObjectId,
-} from 'mongoose';
+import { Schema } from 'mongoose';
 import ICar from '../Interfaces/ICar';
+import AbstractODM from './AbstractODM';
 
-export default class CarODM {
-  public schema: Schema; 
-  public model: Model<ICar>;
-
+export default class CarODM extends AbstractODM<ICar> {
   constructor() {
-    this.schema = new Schema<ICar>({ 
-      model: { type: String, required: true },
-      year: { type: Number, required: true },
-      color: { type: String, required: true },
-      status: { type: Boolean, default: false },
-      buyValue: { type: Number, required: true },
-      doorsQty: { type: Number, required: true },
-      seatsQty: { type: Number, required: true },
-    });
-    this.model = models.Car || model('Car', this.schema);
-  }
-
-  public async create(car: ICar): Promise<ICar> {
-    return this.model.create({ ...car });
-  }
-
-  public async findAll(): Promise<ICar[]> {
-    return this.model.find();
-  }
-
-  public async getById(id: string): Promise<ICar | null | undefined> {
-    if (!isValidObjectId(id)) return undefined;
-    return this.model.findOne({ _id: id });
-  }
-
-  public async updateCar(_id: string, data: Partial<ICar>): Promise<ICar | null | undefined > {
-    return this.model.findByIdAndUpdate({ _id }, { ...data }, { new: true });
+    const schemaCar = new Schema<ICar>({
+      model: String,
+      year: Number,
+      color: String,
+      status: Boolean,
+      buyValue: Number, 
+      doorsQty: Number,
+      seatsQty: Number,
+    }, { versionKey: false });
+    super(schemaCar, 'cars');
   }
 }
