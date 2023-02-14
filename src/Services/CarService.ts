@@ -28,4 +28,9 @@ export default class CarService {
     const listedCar = this.createCarDomain(car);
     return { status: 200, car: listedCar };
   }
+
+  public async updateById(id: string, data: Partial <ICar>) {
+    const updatedCar = await this._model.updateCar(id, data);
+    return updatedCar;
+  }
 }

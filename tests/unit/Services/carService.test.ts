@@ -71,7 +71,7 @@ describe('Should do manipulation in the database ', function () {
 
     const validID = '6377b6483915b707f5fddc78';
 
-    sinon.stub(Model, 'findById').resolves(car);
+    sinon.stub(Model, 'findOne').resolves(car);
     
     const service = new CarService();
     const result = await service.findById(validID);
@@ -82,7 +82,7 @@ describe('Should do manipulation in the database ', function () {
   it('should unssuccessfully to find car by invalid id', async function () {
     const invalidID = '6377b6483915b707f5fddgsvdod';
     const response = { status: 422, message: 'Invalid mongo id' };
-    sinon.stub(Model, 'findById').resolves(response);
+    sinon.stub(Model, 'findOne').resolves(response);
     
     const service = new CarService();
     const result = await service.findById(invalidID);

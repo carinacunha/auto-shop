@@ -34,6 +34,10 @@ export default class CarODM {
 
   public async getById(id: string): Promise<ICar | null | undefined> {
     if (!isValidObjectId(id)) return undefined;
-    return this.model.findById({ _id: id }, { __v: 0 });
+    return this.model.findOne({ _id: id });
+  }
+
+  public async updateCar(_id: string, data: Partial<ICar>): Promise<ICar | null | undefined > {
+    return this.model.findByIdAndUpdate({ _id }, { ...data }, { new: true });
   }
 }
