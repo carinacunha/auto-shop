@@ -1,15 +1,15 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import IMotor from '../../../src/Interfaces/IMotorcycle';
 import MotorService from '../../../src/Services/MotorcycleService';
+import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
 
 const MODELNAME = 'Honda Cb 600f Hornet';
 
 describe('Should do manipulation in the database ', function () {
   afterEach(sinon.restore);
   it('should successfully create a Motor ', async function () {
-    const motorInput: IMotor = {
+    const motorInput: IMotorcycle = {
       model: MODELNAME,
       year: 2005,
       color: 'Yellow',
@@ -18,7 +18,7 @@ describe('Should do manipulation in the database ', function () {
       category: 'Street',
       engineCapacity: 600,
     };
-    const motorOutput: IMotor = {
+    const motorOutput: IMotorcycle = {
       id: '6348513f34c397abcad040b2',
       model: MODELNAME,
       year: 2005,
@@ -38,7 +38,7 @@ describe('Should do manipulation in the database ', function () {
   });
 
   it('should successfully find all Motor ', async function () {
-    const motors: IMotor[] = [
+    const motors: IMotorcycle[] = [
       {
         id: '6348513f34c397abcad040b2',
         model: MODELNAME,
@@ -60,7 +60,7 @@ describe('Should do manipulation in the database ', function () {
   });
 
   it('should successfully find Motor by Id', async function () {
-    const motor: IMotor = {
+    const motor: IMotorcycle = {
       id: '6348513f34c397abcad040b2',
       model: 'Honda Cb 600f Hornet',
       year: 2005,
@@ -73,7 +73,7 @@ describe('Should do manipulation in the database ', function () {
 
     const validID = '6377b6483915b707f5fddc78';
 
-    sinon.stub(Model, 'findOne').resolves(motor);
+    sinon.stub(Model, 'findById').resolves(motor);
     
     const service = new MotorService();
     const result = await service.findById(validID);
@@ -90,5 +90,36 @@ describe('Should do manipulation in the database ', function () {
     const result = await service.findById(invalidID);
 
     expect(result).to.be.deep.equal(response);
+  });
+
+  it('should successfully update', async function () {
+    const id = '63ebc94ef85213ebcbb9ea02';
+    const body: IMotorcycle = {
+      model: 'Honda Cb 600f',
+      year: 2014,
+      color: 'Red',
+      status: true,
+      buyValue: 45.000,
+      category: 'Street',
+      engineCapacity: 600,
+    };
+
+    const output: IMotorcycle = {
+      id: '634852326b35b59438fbea2f',
+      model: 'Honda Cb 600f',
+      year: 2014,
+      color: 'Red',
+      status: true,
+      buyValue: 45.000,
+      category: 'Street',
+      engineCapacity: 600,
+    };
+
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(output);
+    
+    const service = new MotorService();
+    const result = await service.updateById(id, body);
+
+    expect(result.updatedMotor).contains(output);
   });
 });

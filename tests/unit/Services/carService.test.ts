@@ -82,11 +82,42 @@ describe('Should do manipulation in the database ', function () {
   it('should unssuccessfully to find car by invalid id', async function () {
     const invalidID = '6377b6483915b707f5fddgsvdod';
     const response = { status: 422, message: 'Invalid mongo id' };
-    sinon.stub(Model, 'findOne').resolves(response);
+    sinon.stub(Model, 'findById').resolves(response);
     
     const service = new CarService();
     const result = await service.findById(invalidID);
 
     expect(result).to.be.deep.equal(response);
+  });
+
+  it('should successfully update', async function () {
+    const id = '63ebc94ef85213ebcbb9ea02';
+    const body = {
+      model: 'FastBack',
+      year: 2023,
+      color: 'Red',
+      status: true,
+      buyValue: 12.000,
+      doorsQty: 2,
+      seatsQty: 5,
+    };
+
+    const output: ICar = {
+      id: '63ebc94ef85213ebcbb9ea02',
+      model: 'FastBack',
+      year: 2023,
+      color: 'Red',
+      status: true,
+      buyValue: 12,
+      doorsQty: 2,
+      seatsQty: 5,
+    };
+
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(output);
+    
+    const service = new CarService();
+    const result = await service.updateById(id, body);
+
+    expect(result.updatedCar).contains(output);
   });
 });
