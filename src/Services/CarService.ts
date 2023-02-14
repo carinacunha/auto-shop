@@ -34,7 +34,6 @@ export default class CarService {
     if (updatedCar === undefined) return { status: 422, message: 'Invalid mongo id' };
     if (!updatedCar) return { status: 404, message: 'Car not found' };
     const car = this.createCarDomain(updatedCar);
-    console.log(car);
     return { status: 200, updatedCar: car };
   }
 }

@@ -8,5 +8,6 @@ const router = express.Router();
 router.post('/', motorcyclesController.create);
 router.get('/', motorcyclesController.getAll);
 router.get('/:id', motorcyclesController.getById);
+router.put('/:id', motorcyclesController.updateById);
 
 export default router;

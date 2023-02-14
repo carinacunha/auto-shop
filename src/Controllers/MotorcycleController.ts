@@ -22,4 +22,14 @@ export default class MotorcyclesController {
     if (motor) return res.status(status).json(motor);
     return res.status(status).json({ message });
   };
+
+  public updateById: RequestHandler = async (req, res) => {
+    const { id } = req.params;
+    const { body } = req;
+
+    const { status, message, updatedMotor } = await this._serviceMotor.updateById(id, body);
+    if (updatedMotor) {
+      return res.status(status).json(updatedMotor);
+    } return res.status(status).json({ message });
+  };
 }
