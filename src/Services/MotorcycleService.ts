@@ -1,5 +1,5 @@
 import Motorcycles from '../Domains/Motorcycle';
-import IMotorcycles from '../Interfaces/IMotorcycle';
+import IMotorcycles from '../Interfaces/IMotorcycles';
 import MotorcyclesODM from '../Models/motorclyclesODM';
 
 export default class MotorcyclesService {

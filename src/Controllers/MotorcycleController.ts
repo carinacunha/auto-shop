@@ -1,10 +1,10 @@
 import { RequestHandler } from 'express';
 // import { isValidObjectId } from 'mongoose';
-import MotorcyclesService from '../Services/CarService';
+import MotorcycleService from '../Services/MotorcycleService';
 // import IMotorcycles from '../Interfaces/IMotorcycles';
 
 export default class MotorcyclesController {
-  constructor(private _serviceMotor = new MotorcyclesService()) {}
+  constructor(private _serviceMotor = new MotorcycleService()) {}
 
   public create: RequestHandler = async (req, res) => {
     const newMotor = await this._serviceMotor.create(req.body);

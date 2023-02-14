@@ -1,5 +1,5 @@
 import express from 'express';
-import MotorcyclesController from '../Controllers/MotorcyclesController';
+import MotorcyclesController from '../Controllers/MotorcycleController';
 
 const motorcyclesController = new MotorcyclesController();
 
