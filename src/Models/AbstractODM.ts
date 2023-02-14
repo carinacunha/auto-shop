@@ -1,4 +1,4 @@
-import { Model, models, Schema, model } from 'mongoose';
+import { Model, models, Schema, model, isValidObjectId } from 'mongoose';
 
 export default abstract class AbstractODM<T> {
   protected _model: Model<T>;
@@ -13,5 +13,14 @@ export default abstract class AbstractODM<T> {
 
   async create(obj: T): Promise<T> {
     return this._model.create({ ...obj });
+  }
+
+  async findAll(): Promise<T[]> {
+    return this._model.find();
+  }
+  
+  async findById(_id:string):Promise<T | null | undefined> {
+    if (!isValidObjectId(_id)) return undefined;
+    return this._model.findOne({ _id });
   }
 } 

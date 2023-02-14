@@ -15,4 +15,17 @@ export default class MotorcyclesService {
     const newMotor = await this._model.create(motor);
     return this.createMotorDomain(newMotor);
   }
+
+  public async listAll() {
+    const motors = await this._model.findAll();
+    return motors.map((motor) => this.createMotorDomain(motor));
+  }
+
+  public async findById(id: string) {
+    const motor = await this._model.findById(id);
+    if (motor === undefined) return { status: 422, message: 'Invalid mongo id' };
+    if (!motor) return { status: 404, message: 'Motorcycle not found' };
+    const listedMotor = this.createMotorDomain(motor);
+    return { status: 200, motor: listedMotor };
+  }
 }

@@ -10,4 +10,16 @@ export default class MotorcyclesController {
     const newMotor = await this._serviceMotor.create(req.body);
     return res.status(201).json(newMotor);
   };
+
+  public getAll: RequestHandler = async (_req, res) => {
+    const motors = await this._serviceMotor.listAll();
+    return res.status(200).json(motors);
+  };
+
+  public getById: RequestHandler = async (req, res) => {
+    const { id } = req.params;
+    const { status, message, motor } = await this._serviceMotor.findById(id);
+    if (motor) return res.status(status).json(motor);
+    return res.status(status).json({ message });
+  };
 }
