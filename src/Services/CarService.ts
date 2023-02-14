@@ -31,6 +31,7 @@ export default class CarService {
 
   public async updateById(id: string, data: ICar) {
     const updatedCar = await this._model.update(id, data);
-    return updatedCar;
+    if (updatedCar === undefined) return { status: 422, message: 'Invalid mongo id' };
+    return { status: 200, carUpdated: updatedCar };
   }
 }

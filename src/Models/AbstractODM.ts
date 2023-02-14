@@ -21,10 +21,11 @@ export default abstract class AbstractODM<T> {
   
   async findById(id:string):Promise<T | null | undefined> {
     if (!isValidObjectId(id)) return undefined;
-    return this._model.findOne({ id });
+    return this._model.findById({ _id: id }, { __v: 0 });
   }
 
-  public async update(_id: string, data: T): Promise<T | null | undefined > {
-    return this._model.findByIdAndUpdate({ _id }, { ...data } as UpdateQuery<T>, { new: true });
+  public async update(id: string, data: Partial<T>): Promise<T | null | undefined > {
+    if (!isValidObjectId(id)) return undefined;
+    return this._model.findByIdAndUpdate({ _id: id }, { ...data } as UpdateQuery<T>, { new: true });
   }
 } 
