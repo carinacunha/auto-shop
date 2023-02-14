@@ -26,9 +26,9 @@ export default class CarController {
     const { id } = req.params;
     const { body } = req;
 
-    const { status, message, carUpdated } = await this._serviceCar.updateById(id, body);
-    if (carUpdated) {
-      return res.status(status).json(carUpdated);
+    const { status, message, updatedCar } = await this._serviceCar.updateById(id, body);
+    if (updatedCar) {
+      return res.status(status).json(updatedCar);
     } return res.status(status).json({ message });
   };
 }
