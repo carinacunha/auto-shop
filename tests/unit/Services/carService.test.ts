@@ -3,7 +3,6 @@ import sinon from 'sinon';
 import { Model } from 'mongoose';
 import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
-import Car from '../../../src/Domains/Car';
 
 describe('Should do manipulation in the database ', function () {
   afterEach(sinon.restore);
