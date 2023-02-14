@@ -1,17 +1,17 @@
 import Motorcycles from '../Domains/Motorcycle';
-import IMotorcycle from '../Interfaces/IMotorcycle';
+import IMotorcycles from '../Interfaces/IMotorcycle';
 import MotorcyclesODM from '../Models/motorclyclesODM';
 
 export default class MotorcyclesService {
   constructor(private _model = new MotorcyclesODM()) {}
-  public createMotorDomain(motor: IMotorcycles | null): Motorcycle | null {
+  public createMotorDomain(motor: IMotorcycles | null): Motorcycles | null {
     if (motor) {
       return new Motorcycles(motor);
     }
     return null;
   }
 
-  public async create(motor: IMotorcycle) {
+  public async create(motor: IMotorcycles) {
     const newMotor = await this._model.create(motor);
     return this.createMotorDomain(newMotor);
   }
@@ -29,7 +29,7 @@ export default class MotorcyclesService {
     return { status: 200, motor: listedMotor };
   }
 
-  public async updateById(id: string, data: IMotorcycle) {
+  public async updateById(id: string, data: IMotorcycles) {
     const updatedMotor = await this._model.update(id, data);
     if (updatedMotor === undefined) return { status: 422, message: 'Invalid mongo id' };
     if (!updatedMotor) return { status: 404, message: 'Motorcycle not found' };
