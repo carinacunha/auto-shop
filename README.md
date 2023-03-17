@@ -1,4 +1,4 @@
-# Auto shop #
+# Auto Shop #
 ![alt app](https://img.freepik.com/free-vector/car-showroom-center-with-autos-exhibition-inside-automobile-dealership-store-shop-interior-new-modern-vehicles-models-demonstration-sale-trading_575670-1511.jpg?w=1380&t=st=1679075602~exp=1679076202~hmac=0ac7ef04bad98d737667f2e4d203da91b7c607eadcbde295c079ac1f7659945e)
 
 ## About ##
