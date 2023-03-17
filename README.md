@@ -1,5 +1,5 @@
-# Shop Car #
-![alt app](car.jpg "car img")
+# Auto shop #
+![alt app](https://img.freepik.com/free-vector/car-showroom-center-with-autos-exhibition-inside-automobile-dealership-store-shop-interior-new-modern-vehicles-models-demonstration-sale-trading_575670-1511.jpg?w=1380&t=st=1679075602~exp=1679076202~hmac=0ac7ef04bad98d737667f2e4d203da91b7c607eadcbde295c079ac1f7659945e)
 
 ## About ##
 
@@ -14,9 +14,9 @@ In this project, Object Oriented Programming (OOP) principles were used to build
 * GET /cars
   Responsible for listing all cars.
 * GET /cars/:id
-Responsible for listing a specific car.
+  Responsible for listing a specific car.
 * PUT /cars/:id
-Responsible for updating a specific car.
+  Responsible for updating a specific car.
 
 2️⃣ Motorcycles Routes:
 
@@ -25,9 +25,9 @@ Responsible for updating a specific car.
 * GET /motorcycles
   Responsible for listing all motorcycles.
 * GET /motorcycles/:id
-Responsible for listing a specific motorcycle.
+  Responsible for listing a specific motorcycle.
 * PUT /motorcycles/:id
-Responsible for updating a specific motorcycle.
+  Responsible for updating a specific motorcycle.
 
 ## Skills and Tools ##
 
